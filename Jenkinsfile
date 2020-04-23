@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker image: 'php' }
+    agent { docker image: 'php:alpine' }
     environment {
         DB_USER = 'root'
     }
@@ -8,8 +8,8 @@ pipeline {
             steps {
                 sh 'php --version'
                 sh 'echo $DB_USER > DB.env'
-                sh 'php -r \'print("Hello world!");\''
-                sh "php -r 'file_put_contents(\'VERSION\', \'2.1.0\');'"
+                sh "php -r 'print(\"Hello world!\");'"
+                sh "php -r 'file_put_contents(\"VERSION\", \"2.1.0\");'"
             }
         }
         stage('Everything is ok') {
